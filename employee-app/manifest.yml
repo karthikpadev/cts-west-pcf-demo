@@ -1,0 +1,41 @@
+applications:
+- name: without-config-server
+  memory:  512M 
+  path: build\libs\employee-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: '-Xss349k'
+    SPRING_PROFILES_ACTIVE: default
+    SPRING_APPLICATION_NAME: without
+  random-route: true
+- name: with-config-server
+  memory:  512M 
+  path: build\libs\employee-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: '-Xss349k'
+    SPRING_PROFILES_ACTIVE: default
+    SPRING_APPLICATION_NAME: with
+  random-route: true
+  services:
+  - config-server
+- name: employee
+  memory:  512M 
+  path: build\libs\employee-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: '-Xss349k'
+    SPRING_PROFILES_ACTIVE: default
+    SPRING_APPLICATION_NAME: employee
+  random-route: true
+  services:
+  - config-server
+- name: employee-india
+  memory:  512M 
+  path: build\libs\employee-0.0.1-SNAPSHOT.jar
+  env:
+    JAVA_OPTS: '-Xss349k'
+    SPRING_PROFILES_ACTIVE: india
+    SPRING_APPLICATION_NAME: employee
+  random-route: true
+  services:
+  - config-server
+
+
